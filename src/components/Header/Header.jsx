@@ -3,15 +3,17 @@ import AAPILogo from "./AAPILogo";
 import HeaderMenuButton from "./HeaderMenuButton";
 import { styled } from "@mui/system";
 
+
+
 const Header = () => {
   return (
     <HeaderWrapper>
-      <WrapItems>
+      <div style={{ display: "flex", alignItems: "center" }}>
         <AAPILogo height={50} width={70} />
-      </WrapItems>
-      <WrapItems>
+      </div>
+      <div style={{ display: "flex", alignItems: "center" }}>
         <HeaderMenuButton />
-      </WrapItems>
+      </div>
     </HeaderWrapper>
   );
 };
@@ -20,12 +22,9 @@ const HeaderWrapper = styled("div")({
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
-  paddingTop: 2,
   paddingLeft: 20,
   paddingRight: 20,
   backgroundColor: "darkblue",
 });
-
-const WrapItems = styled("div")({});
 
 export default Header;
