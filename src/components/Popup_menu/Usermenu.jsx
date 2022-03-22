@@ -1,19 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "../../stylesheets/usermenu.css";
 import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
+import { useSelector } from "react-redux";
 
 function Usermenu() {
-  const [show, setShow] = useState(true);
-
-  useEffect(() => {
-    document.onclick = () => {
-      setShow((prev) => !prev);
-    };
-
-    console.log(show);
-    return () => {};
-  }, [show]);
+  const show = useSelector((state) => state.showPopup.showMenu);
 
   return (
     <div
