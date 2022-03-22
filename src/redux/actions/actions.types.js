@@ -1,0 +1,2 @@
+export const SHOW_POPUP_MENU = "SHOW_POPUP_MENU";
+export const HIDE_POPUP_MENU = "HIDE_POPUP_MENU";
