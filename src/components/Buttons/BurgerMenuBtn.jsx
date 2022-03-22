@@ -1,10 +1,16 @@
 import React from "react";
 import { Box, Grid } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-
-const handleButtonClick = () => {};
+import { useSelector, useDispatch } from "react-redux";
+import {
+  showPopupMenu,
+  hidePopupMenu,
+} from "../../redux/actions/toggleMenuAction";
 
 const BurgerMenuBtn = () => {
+  const showMenu = useSelector((state) => state.showPopup.showMenu);
+  const dispatch = useDispatch();
+
   return (
     <Box
       height="2em"
@@ -26,7 +32,15 @@ const BurgerMenuBtn = () => {
             alignItems: "center",
           }}
         >
-          <MenuIcon onClick={handleButtonClick} />
+          <MenuIcon
+            onClick={() => {
+              if (showMenu) {
+                dispatch(hidePopupMenu());
+                return;
+              }
+              dispatch(showPopupMenu());
+            }}
+          />
         </Grid>
         <Grid item>
           <img
