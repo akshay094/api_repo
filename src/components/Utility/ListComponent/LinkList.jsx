@@ -13,7 +13,9 @@ const LinkList = ({ heading, listItems }) => {
 
       {typeof listItems == "string" && (
         <Box>
-          <Typography variant="subtitle2">{listItems}</Typography>
+          <Typography sx={{ color: "#768C9D" }} variant="subtitle2">
+            {listItems}
+          </Typography>
         </Box>
       )}
 
@@ -27,8 +29,8 @@ const LinkList = ({ heading, listItems }) => {
                 variant="subtitle2"
               >
                 <Link
-                  to={`/${listItem}`}
-                  style={{ textDecoration: "none", color: "white" }}
+                  to={`/${listItem.toLowerCase()}`}
+                  style={{ textDecoration: "none", color: "#768C9D" }}
                 >
                   {listItem}
                 </Link>
