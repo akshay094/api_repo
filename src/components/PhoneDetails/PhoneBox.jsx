@@ -2,21 +2,25 @@ import React from 'react';
 import { Box, Grid, Typography, OutlinedInput, Select, MenuItem, Checkbox, Button } from '@mui/material'
 import { phoneType } from '../../constants/dropDownData'
 import useStyles from './styles'
+import FieldError from '../Utility/FieldErrorBox/FieldError'
 
-const PhoneBox = () => {
+const PhoneBox = ({ renderNumber, formik }) => {
   const classes = useStyles();
+  const { errors, touched } = formik;
 
   return (
     <Box classes={classes.innerWrapper}>
 
-      <Box><Typography className={classes.label}>Phone</Typography></Box>
+      <Box><Typography className={classes.label}>Phone #{++renderNumber}</Typography></Box>
 
       <Grid container>
         <Grid item xs md lg>
           <Typography className={classes.label}>
             Phone Type
           </Typography>
-          <Select>
+          <Select name="phoneType"
+            className={errors.phoneType ? classes.errorBox : null}
+            {...formik.getFieldProps('phoneType')}>
             {
               phoneType.map((type, index) => {
                 return (
@@ -25,20 +29,34 @@ const PhoneBox = () => {
               })
             }
           </Select>
+          {errors.phoneType && touched.phoneType ? (
+            < FieldError message={errors.phoneType} />
+          ) : null}
         </Grid>
 
         <Grid item xs md lg>
           <Typography className={classes.label}>
             Phone Number
           </Typography>
-          <OutlinedInput />
+
+          <OutlinedInput name="phoneNumber"
+            className={errors.phoneNumber ? classes.errorBox : null}
+            {...formik.getFieldProps('phoneNumber')} />
+          {errors.phoneNumber && touched.phoneNumber ? (
+            <FieldError message={errors.phoneNumber} />
+          ) : null}
 
         </Grid>
         <Grid item xs md lg>
           <Typography className={classes.label}>
             Extension
           </Typography>
-          <OutlinedInput />
+          <OutlinedInput name="extension"
+            className={errors.extension ? classes.errorBox : null}
+            {...formik.getFieldProps('extension')} />
+          {errors.extension && touched.extension ? (
+            < FieldError message={errors.extension} />
+          ) : null}
         </Grid>
 
       </Grid>
